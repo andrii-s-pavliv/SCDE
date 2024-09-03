@@ -1,0 +1,22 @@
+@startuml
+autonumber
+
+actor User
+participant "Smart Contract for Data Expiry (SCDE)" as SCDE
+participant "Key Management System" as KMS
+participant "Blockchain Network" as BC
+participant "Off-chain Data Storage" as DS
+
+User -> SCDE: Initiate data submission
+SCDE -> KMS: Manage encryption keys
+KMS -> SCDE: Confirm key management
+SCDE -> BC: Log transaction details
+BC -> DS: Store encrypted data off-chain
+DS -> BC: Confirm data storage
+SCDE -> BC: Monitor data expiry based on policies
+BC -> SCDE: Trigger data expiry protocol when due
+SCDE -> KMS: Initiate encryption key destruction
+KMS -> SCDE: Confirm key destruction
+SCDE -> DS: Request data deletion
+DS -> SCDE: Confirm data deletion
+@enduml
